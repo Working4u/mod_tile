@@ -42,7 +42,7 @@
 #define FONT_RECURSE 0
 
 // Typical interval between planet imports, used as basis for tile expiry times
-#define PLANET_INTERVAL (7 * 24 * 60 * 60)
+#define PLANET_INTERVAL (100 * 24 * 60 * 60)
 
 // Planet import should touch this file when complete
 #define PLANET_TIMESTAMP "/planet-import-complete"

@@ -38,7 +38,7 @@ static time_t getPlanetTime(const char * tile_dir, const char * xmlname)
         snprintf(filename, PATH_MAX-1, "%s/%s", tile_dir, PLANET_TIMESTAMP);
         if (stat(filename, &st_stat) < 0) {
             // Make something up
-            return time(NULL) - (3*24*60*60);
+            return time(NULL) - (100*24*60*60);
         }
     }
     return st_stat.st_mtime;
