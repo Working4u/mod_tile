@@ -502,14 +502,14 @@ void *slave_thread(void * arg) {
             if (pfd == FD_INVALID) {
                 if (sConfig->ipport > 0) {
                     syslog(LOG_ERR,
-                        "Failed to connect to render slave %s:%i, trying again in 30 seconds",
+                        "Failed to connect to render slave %s:%i, trying again in 5 seconds",
                         sConfig->iphostname, sConfig->ipport);
                 } else {
                     syslog( LOG_ERR,
-                            "Failed to connect to render slave %s, trying again in 30 seconds",
+                            "Failed to connect to render slave %s, trying again in 5 seconds",
                             sConfig->socketname);
                 }
-                sleep(30);
+                sleep(5); // OSMAND_CHANGE
                 continue;
             }
         }
@@ -580,17 +580,17 @@ void *slave_thread(void * arg) {
             if (ret_size < sizeof(struct protocol)) {
                 if (sConfig->ipport > 0) {
                     syslog( LOG_ERR,
-                            "Invalid reply from render slave %s:%i, trying again in 30 seconds",
+                            "Invalid reply from render slave %s:%i, trying again in 5 seconds",
                             sConfig->iphostname, sConfig->ipport);
                 } else {
                     syslog( LOG_ERR,
-                            "Invalid reply render slave %s, trying again in 30 seconds",
+                            "Invalid reply render slave %s, trying again in 5 seconds",
                             sConfig->socketname);
                 }
 
                 ret = cmdNotDone;
                 send_response(item, ret, -1);
-                sleep(30);
+                sleep(5); // OSMAND_CHANGE
             } else {
                 ret = resp->cmd;
                 send_response(item, ret, -1);
@@ -607,7 +607,7 @@ void *slave_thread(void * arg) {
                     //Sleep for a while to make sure we don't overload the renderer
                     //This only happens if it didn't correctly block on the rendering
                     //request
-                    sleep(30);
+                    sleep(5); // OSMAND_CHANGE
                 }
             }
 
